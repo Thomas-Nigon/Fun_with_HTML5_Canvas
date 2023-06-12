@@ -47,8 +47,6 @@ function draw(e) {
   if(direction){
     ctx.lineWidth++
   } else (ctx.lineWidth--);
-  e.preventDefault();
-    e.stopPropagation();
 }
 
 canvas.addEventListener('mousedown', (e) => {
