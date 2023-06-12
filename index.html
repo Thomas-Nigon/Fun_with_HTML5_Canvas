@@ -59,13 +59,30 @@ canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', () => isDrawing = false);
 canvas.addEventListener('mouseout', () => isDrawing = false);
 
-canvas.addEventListener("touchmove", (e) => {
-  var touch = e.touches[0];
-  var mouseEvent = new MouseEvent("mousemove", {
-    clientX: touch.clientX,
-    clientY: touch.clientY
-  });
-  canvas.dispatchEvent(mouseEvent);
+
+//Mobile canvas
+document.body.addEventListener("touchstart", function (e) {
+  if (e.target == canvas) {
+   e.preventDefault();
+   clientX = e.touches[0].clientX;
+   clientY = e.touches[0].clientY; 
+   isDrawing=true;
+   draw(clientX, clientY)
+  }
+}, false);
+document.body.addEventListener("touchend", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+    isDrawing=false;
+  }
+}, false);
+document.body.addEventListener("touchmove", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+    clientX = e.touches[0].clientX;
+    clientY = e.touches[0].clientY;
+    draw(clientX, clientY)
+  }
 }, false);
 
 </script>
