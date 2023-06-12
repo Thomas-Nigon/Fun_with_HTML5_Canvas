@@ -55,6 +55,14 @@ canvas.addEventListener('mousedown', (e) => {
   [lastX, lastY] = [e.offsetX, e.offsetY];
 });
 
+canvas.addEventListener("touchmove", (e) => {
+  var touch = e.touches[0];
+  var mouseEvent = new MouseEvent("mousemove", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
+}, false);
 
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', () => isDrawing = false);
