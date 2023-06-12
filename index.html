@@ -68,7 +68,7 @@
   function drawM(clientX, clientY){
     if(!isDrawing)
     return; //only run in click and drag
-
+[lastX, lastY] = [clientX, clientY]
 ctx.strokeStyle= `hsl(${hue},100%,50%)`;
 ctx.beginPath();
 ctx.moveTo(lastX,lastY); //start from
