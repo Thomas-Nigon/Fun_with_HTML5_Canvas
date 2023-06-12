@@ -68,10 +68,9 @@
   function drawM(clientX, clientY){
     if(!isDrawing)
     return; //only run in click and drag
-[lastX, lastY] = [clientX, clientY]
 ctx.strokeStyle= `hsl(${hue},100%,50%)`;
 ctx.beginPath();
-ctx.moveTo(lastX,lastY); //start from
+ctx.moveTo(clientX, clientY); //start from
 ctx.lineTo(clientX,clientY); //go to
 ctx.stroke(); //to actually draw the path on canvas
 [lastX,lastY]=[clientX,clientY];
@@ -95,6 +94,7 @@ ctx.lineWidth--;
 document.body.addEventListener("touchstart", function (e) {
   if (e.target == canvas) {
    e.preventDefault();
+   [lastX, lastY] = [clientX, clientY]
    clientX = e.touches[0].clientX;
    clientY = e.touches[0].clientY; 
    isDrawing=true;
@@ -119,15 +119,19 @@ document.body.addEventListener("touchmove", function (e) {
   </script>
   
   <style>
+    h1{
+      text-align: center;
+    }
     html, body {
       margin: 0;
     }
-    @media screen and (min-width: 400px){
+    @media screen and (max-width: 400px){
     *{ 
       margin: 0;
       padding: 0;
       overflow: hidden;
     }
+    body{background-color: antiquewhite;}
   }
   </style>
 
