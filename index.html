@@ -47,13 +47,17 @@ function draw(e) {
   if(direction){
     ctx.lineWidth++
   } else (ctx.lineWidth--);
-
+  e.preventDefault();
+    e.stopPropagation();
 }
 
 canvas.addEventListener('mousedown', (e) => {
   isDrawing = true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
 });
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', () => isDrawing = false);
+canvas.addEventListener('mouseout', () => isDrawing = false);
 
 canvas.addEventListener("touchmove", (e) => {
   var touch = e.touches[0];
@@ -63,10 +67,6 @@ canvas.addEventListener("touchmove", (e) => {
   });
   canvas.dispatchEvent(mouseEvent);
 }, false);
-
-canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('mouseup', () => isDrawing = false);
-canvas.addEventListener('mouseout', () => isDrawing = false);
 
 </script>
 
